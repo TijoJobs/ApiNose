@@ -1,14 +1,14 @@
-package co.edu.uco.nose.business.domain;
-
-import java.util.UUID;
+package co.edu.uco.nose.entity;
 
 import co.edu.uco.nose.crosscuting.helpers.UUIDHelper;
 
-class Domain {
+import java.util.UUID;
+
+class Entity {
 
     private UUID id;
 
-    protected Domain(final UUID id) {
+    protected Entity(final UUID id) {
         setId(id);
     }
 

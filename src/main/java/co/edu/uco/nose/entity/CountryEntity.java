@@ -1,36 +1,37 @@
-package co.edu.uco.nose.business.domain;
+package co.edu.uco.nose.entity;
 
-import java.util.UUID;
-
+import co.edu.uco.nose.entity.Entity;
 import co.edu.uco.nose.crosscuting.helpers.ObjetcHelper;
 import co.edu.uco.nose.crosscuting.helpers.TextHelper;
 import co.edu.uco.nose.crosscuting.helpers.UUIDHelper;
 
-public final class CountryDomain extends Domain {
+import java.util.UUID;
+
+public final class CountryEntity extends Entity {
 
     private String name;
 
 
-    public CountryDomain() {
+    public CountryEntity() {
         super(UUIDHelper.getUUIDHelper().getDefault());
         setName(TextHelper.getDefault());
     }
 
-    public CountryDomain(final UUID id) {
+    public CountryEntity(final UUID id) {
         super(id);
         setName(TextHelper.getDefault());
     }
 
-    public CountryDomain(final UUID id, final String name) {
+    public CountryEntity(final UUID id, final String name) {
         super(id);
         setName(name);
     }
 
-    static CountryDomain getDefaultValue() {
-        return new CountryDomain();
+    static CountryEntity getDefaultValue() {
+        return new CountryEntity();
     }
 
-    static CountryDomain getDefaultValue(final CountryDomain country) {
+    static CountryEntity getDefaultValue(final CountryEntity country) {
         return ObjetcHelper.getDefault(country, getDefaultValue());
     }
 
