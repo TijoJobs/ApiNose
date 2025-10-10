@@ -1,0 +1,55 @@
+package co.edu.uco.nose.dto;
+
+import co.edu.uco.nose.crosscuting.helper.TextHelper;
+import co.edu.uco.nose.crosscuting.helper.ObjectHelper;
+import co.edu.uco.nose.crosscuting.helper.UUIDHelper;
+
+import java.util.UUID;
+
+public class IdentificationTypeDTO {
+    private UUID id;
+    private String name;
+
+    public IdentificationTypeDTO() {
+        setId(UUIDHelper.getUUIDHelper().getDefault());
+        setName(TextHelper.getDefault());
+    }
+
+    public IdentificationTypeDTO(final UUID id) {
+        setId(id);
+        setName(TextHelper.getDefault());
+    }
+
+    public IdentificationTypeDTO(final UUID id, final String name) {
+        setId(id);
+        setName(name);
+
+    }
+
+    static IdentificationTypeDTO getDefaultValue() {
+        return new IdentificationTypeDTO();
+    }
+
+    static IdentificationTypeDTO getDefaultValue(final IdentificationTypeDTO idType) {
+        return ObjectHelper.getDefault(idType, getDefaultValue());
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(final UUID id) {
+        this.id = UUIDHelper.getUUIDHelper().getDefault(id);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(final String name) {
+        this.name = TextHelper.getDefaultWithTrim(name);
+    }
+
+
+
+}
