@@ -8,8 +8,6 @@ import co.edu.uco.nose.entity.CityEntity;
 
 import java.util.UUID;
 
-public interface CityDAO extends CreateDAO <CityEntity>,
-        RetrieveDAO <CityEntity, UUID>,
-        UpdateDAO<CityEntity>{
+public interface CityDAO extends RetrieveDAO <CityEntity, UUID>{
 
 }

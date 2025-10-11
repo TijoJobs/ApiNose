@@ -169,4 +169,7 @@ public class UserEntity extends Entity {
     }
 
 
+    public Object getSecondName() {
+        return null;
+    }
 }

@@ -51,7 +51,7 @@ public class CityEntity extends Entity {
     }
 
     public void setState(final StateEntity state) {
-        this.state = ObjetcHelper.getDefault(state, StateEntity.getDefaultValue();
+        this.state = ObjetcHelper.getDefault(state, StateEntity.getDefaultValue());
     }
 
 

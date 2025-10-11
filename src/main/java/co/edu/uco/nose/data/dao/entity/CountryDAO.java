@@ -7,8 +7,7 @@ import co.edu.uco.nose.entity.CountryEntity;
 
 import java.util.UUID;
 
-public interface CountryDAO extends CreateDAO<CountryEntity>,
-        RetrieveDAO <CountryEntity, UUID>,
-        UpdateDAO<CountryEntity> {
+public interface CountryDAO extends
+        RetrieveDAO <CountryEntity, UUID>{
 
 }

@@ -3,7 +3,10 @@ package co.edu.uco.nose.crosscuting.exception;
 import co.edu.uco.nose.crosscuting.helpers.ObjetcHelper;
 import co.edu.uco.nose.crosscuting.helpers.TextHelper;
 
+
+
 public final class  NoseException extends RuntimeException {
+
 
     private static final long serialVersionUID = -433023700129543247L;
     private Throwable rootException;
@@ -22,6 +25,10 @@ public final class  NoseException extends RuntimeException {
 
     public static NoseException create(final String userMessage, final String technicalMessage){
         return new NoseException(new Exception(), userMessage, technicalMessage);
+    }
+
+    public static NoseException create(Exception exception, String userMessage, final String technicalMessage){
+        return new NoseException(exception, userMessage, technicalMessage);
     }
 
     public static NoseException create(final Throwable rootException, final  String userMessage, final String technicalMessage){

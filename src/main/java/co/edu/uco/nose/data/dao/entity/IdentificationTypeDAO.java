@@ -7,3 +7,4 @@ import java.util.UUID;
 
 public interface IdentificationTypeDAO extends RetrieveDAO <IdentificationTypeEntity, UUID> {
 }
+

@@ -3,11 +3,11 @@ import co.edu.uco.nose.crosscuting.helper.SqlConnectionHelper;
 
 import java.sql.Connection;
 
-public abstract class SqlConnection {
+public abstract class PostgreSqlConnection {
 
     private Connection connection;
 
-    protected SqlConnection(final Connection connection) {
+    protected PostgreSqlConnection(final Connection connection) {
         setConnection(connection);
     }
 
