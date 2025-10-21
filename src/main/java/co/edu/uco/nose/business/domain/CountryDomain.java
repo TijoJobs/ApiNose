@@ -2,9 +2,9 @@ package co.edu.uco.nose.business.domain;
 
 import java.util.UUID;
 
-import co.edu.uco.nose.crosscuting.helpers.ObjetcHelper;
-import co.edu.uco.nose.crosscuting.helpers.TextHelper;
-import co.edu.uco.nose.crosscuting.helpers.UUIDHelper;
+import co.edu.uco.nose.crosscuting.helper.ObjectHelper;
+import co.edu.uco.nose.crosscuting.helper.TextHelper;
+import co.edu.uco.nose.crosscuting.helper.UUIDHelper;
 
 public final class CountryDomain extends Domain {
 
@@ -31,7 +31,7 @@ public final class CountryDomain extends Domain {
     }
 
     static CountryDomain getDefaultValue(final CountryDomain country) {
-        return ObjetcHelper.getDefault(country, getDefaultValue());
+        return ObjectHelper.getDefault(country, getDefaultValue());
     }
 
 

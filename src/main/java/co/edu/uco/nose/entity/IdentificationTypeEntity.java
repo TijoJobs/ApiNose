@@ -1,30 +1,30 @@
 package co.edu.uco.nose.entity;
 
-import co.edu.uco.nose.entity.Entity;
-import co.edu.uco.nose.crosscuting.helpers.ObjetcHelper;
-import co.edu.uco.nose.crosscuting.helpers.TextHelper;
-import co.edu.uco.nose.crosscuting.helpers.UUIDHelper;
+import co.edu.uco.nose.crosscuting.helper.ObjectHelper;
+import co.edu.uco.nose.crosscuting.helper.TextHelper;
+import co.edu.uco.nose.crosscuting.helper.UUIDHelper;
 
 import java.util.UUID;
 
-public class IdentificationTypeEntity extends Entity {
+public class IdentificationTypeEntity  {
 
+    private UUID id;
     private String name;
 
     public IdentificationTypeEntity() {
-        super(UUIDHelper.getUUIDHelper().getDefault());
+        setId(UUIDHelper.getUUIDHelper().getDefault());
         setName(TextHelper.getDefault());
     }
 
     public IdentificationTypeEntity(final UUID id) {
-        super(id);
+        setId(id);
         setName(TextHelper.getDefault());
     }
 
 
     public IdentificationTypeEntity(final UUID id, final String name) {
-        super(id);
-        this.name = name;
+        setId(id);
+        setName(name);
     }
 
     static IdentificationTypeEntity getDefaultValue() {
@@ -32,7 +32,15 @@ public class IdentificationTypeEntity extends Entity {
     }
 
     static IdentificationTypeEntity getDefaultValue(final IdentificationTypeEntity identificationType) {
-        return ObjetcHelper.getDefault(identificationType, getDefaultValue());
+        return ObjectHelper.getDefault(identificationType, getDefaultValue());
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(final UUID id) {
+        this.id = UUIDHelper.getUUIDHelper().getDefault(id);
     }
 
     public String getName() {

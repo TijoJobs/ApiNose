@@ -2,9 +2,9 @@ package co.edu.uco.nose.business.domain;
 
 import java.util.UUID;
 
-import co.edu.uco.nose.crosscuting.helpers.ObjetcHelper;
-import co.edu.uco.nose.crosscuting.helpers.TextHelper;
-import co.edu.uco.nose.crosscuting.helpers.UUIDHelper;
+import co.edu.uco.nose.crosscuting.helper.ObjectHelper;
+import co.edu.uco.nose.crosscuting.helper.TextHelper;
+import co.edu.uco.nose.crosscuting.helper.UUIDHelper;
 
 public class CityDomain extends Domain{
 
@@ -34,7 +34,7 @@ public class CityDomain extends Domain{
     }
 
     static CityDomain getDefaultValue(final CityDomain city) {
-        return ObjetcHelper.getDefault(city, getDefaultValue());
+        return ObjectHelper.getDefault(city, getDefaultValue());
     }
 
     public String getName() {
@@ -50,7 +50,7 @@ public class CityDomain extends Domain{
     }
 
     public void setState(final StateDomain state) {
-        this.state = ObjetcHelper.getDefault(state, StateDomain.getDefaultValue());
+        this.state = ObjectHelper.getDefault(state, StateDomain.getDefaultValue());
     }
 
 

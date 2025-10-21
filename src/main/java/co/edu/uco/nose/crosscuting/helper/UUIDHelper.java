@@ -28,6 +28,11 @@ public final class UUIDHelper {
 		} else {
 			return UUID.fromString(uuidAsString);
 		}
+
+	}
+
+	public UUID generateNewUUID() {
+		return UUID.randomUUID();
 	}
 	}
 

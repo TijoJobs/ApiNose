@@ -2,11 +2,12 @@ package co.edu.uco.nose.business.domain;
 
 import java.util.UUID;
 
-import co.edu.uco.nose.crosscuting.helpers.ObjetcHelper;
-import co.edu.uco.nose.crosscuting.helpers.TextHelper;
-import co.edu.uco.nose.crosscuting.helpers.UUIDHelper;
+import co.edu.uco.nose.crosscuting.helper.ObjectHelper;
+import co.edu.uco.nose.crosscuting.helper.TextHelper;
+import co.edu.uco.nose.crosscuting.helper.UUIDHelper;
 
 public class StateDomain extends Domain {
+
 
     private String name;
     private CountryDomain country;
@@ -23,18 +24,24 @@ public class StateDomain extends Domain {
         setCountry(CountryDomain.getDefaultValue());
     }
 
-    public StateDomain(final UUID id, final String name, final CountryDomain country) {
+    public StateDomain(final UUID id, final CountryDomain country , String name) {
         super(id);
-        this.name = name;
-        this.country = country;
+        setName(ObjectHelper.getDefault());
+        setName(name);
     }
+
+    public StateDomain(UUID id, String name) {
+        super(id);
+        setName(name);
+    }
+
 
     static StateDomain getDefaultValue() {
         return new StateDomain();
     }
 
     static StateDomain getDefaultValue(final StateDomain state) {
-        return ObjetcHelper.getDefault(state, getDefaultValue());
+        return ObjectHelper.getDefault(state, getDefaultValue());
     }
 
     public String getName() {
@@ -50,7 +57,7 @@ public class StateDomain extends Domain {
     }
 
     public void setCountry(final CountryDomain country) {
-        this.country = ObjetcHelper.getDefault(country, CountryDomain.getDefaultValue());
+        this.country = ObjectHelper.getDefault(country, CountryDomain.getDefaultValue());
     }
 
 

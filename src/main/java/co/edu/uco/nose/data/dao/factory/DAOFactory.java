@@ -1,7 +1,7 @@
 package co.edu.uco.nose.data.dao.factory;
 
 import co.edu.uco.nose.crosscuting.exception.NoseException;
-import co.edu.uco.nose.crosscuting.helpers.SqlConnectionHelper;
+import co.edu.uco.nose.crosscuting.helper.SqlConnectionHelper;
 import co.edu.uco.nose.data.dao.entity.IdentificationTypeDAO;
 import co.edu.uco.nose.data.dao.entity.CityDAO;
 import co.edu.uco.nose.data.dao.entity.CountryDAO;
@@ -36,15 +36,15 @@ public abstract class DAOFactory {
     public abstract UserDAO getUserDAO();
 
     protected abstract void openConnection();
-    protected final void initTransaction(){
+    public final void initTransaction(){
         SqlConnectionHelper.ensureTransactionIsNotStarted(connection);
 
         try{
             connection.setAutoCommit(false);
         } catch (final SQLException exception){
             var userMessage = "";
-            var techincalMessage = "";
-            throw NoseException.create(exception, userMessage, techincalMessage);
+            var technicalMessage = "";
+            throw NoseException.create(exception, userMessage, technicalMessage);
         } catch (final Exception exception){
             var userMessage = "a";
             var techincalMessage = "b";
@@ -53,7 +53,7 @@ public abstract class DAOFactory {
 
     }
 
-    protected final void commitTransaction(){
+    public final void commitTransaction(){
 
         SqlConnectionHelper.ensureTransactionIsStarted(connection);
 
@@ -65,39 +65,39 @@ public abstract class DAOFactory {
             throw NoseException.create( exception, userMessage, techincalMessage);
         } catch (final Exception exception){
             var userMessage = "a";
-            var techincalMessage = "b";
-            throw NoseException.create(exception , userMessage, techincalMessage);
+            var technicalMessage = "b";
+            throw NoseException.create(exception , userMessage, technicalMessage);
         }
     }
 
-    protected final void rollbackTransaction(){
+    public final void rollbackTransaction(){
         SqlConnectionHelper.ensureTransactionIsStarted(connection);
         try{
             connection.rollback();
         } catch (final SQLException exception){
             var userMessage = "";
-            var techincalMessage = "";
-            throw NoseException.create(exception , userMessage, techincalMessage);
+            var technicalMessage = "";
+            throw NoseException.create(exception , userMessage, technicalMessage);
         } catch (final Exception exception){
             var userMessage = "a";
-            var techincalMessage = "b";
-            throw NoseException.create(exception, userMessage, techincalMessage);
+            var technicalMessage = "b";
+            throw NoseException.create(exception, userMessage, technicalMessage);
         }
     }
 
-    protected final  void closeConnection(){
+    public final  void closeConnection(){
         SqlConnectionHelper.ensureConnectionIsOpen(connection);
 
         try{
             connection.close();
         } catch (final SQLException exception){
             var userMessage = "";
-            var techincalMessage = "";
-            throw NoseException.create(exception, userMessage, techincalMessage);
+            var technicalMessage = "";
+            throw NoseException.create(exception, userMessage, technicalMessage);
         } catch (final Exception exception){
             var userMessage = "a";
-            var techincalMessage = "b";
-            throw NoseException.create(exception,userMessage, techincalMessage);
+            var technicalMessage = "b";
+            throw NoseException.create(exception,userMessage, technicalMessage);
         }
 
 

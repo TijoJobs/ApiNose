@@ -2,9 +2,9 @@ package co.edu.uco.nose.business.domain;
 
 import java.util.UUID;
 
-import co.edu.uco.nose.crosscuting.helpers.ObjetcHelper;
-import co.edu.uco.nose.crosscuting.helpers.TextHelper;
-import co.edu.uco.nose.crosscuting.helpers.UUIDHelper;
+import co.edu.uco.nose.crosscuting.helper.ObjectHelper;
+import co.edu.uco.nose.crosscuting.helper.TextHelper;
+import co.edu.uco.nose.crosscuting.helper.UUIDHelper;
 
 public class IdentificationTypeDomain extends Domain {
 
@@ -30,8 +30,8 @@ public class IdentificationTypeDomain extends Domain {
         return new IdentificationTypeDomain();
     }
 
-    static IdentificationTypeDomain getDefaultValue(final IdentificationTypeDomain identifiactionType) {
-        return ObjetcHelper.getDefault(identifiactionType, getDefaultValue());
+    static IdentificationTypeDomain getDefaultValue(final IdentificationTypeDomain identificationType) {
+        return ObjectHelper.getDefault(identificationType, getDefaultValue());
     }
 
     public String getName() {

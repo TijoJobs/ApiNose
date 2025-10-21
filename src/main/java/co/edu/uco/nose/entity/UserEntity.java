@@ -3,10 +3,10 @@ package co.edu.uco.nose.entity;
 import co.edu.uco.nose.entity.UserEntity;
 import co.edu.uco.nose.entity.Entity;
 import co.edu.uco.nose.business.domain.IdentificationTypeDomain;
-import co.edu.uco.nose.crosscuting.helpers.BooleanHelper;
-import co.edu.uco.nose.crosscuting.helpers.ObjetcHelper;
-import co.edu.uco.nose.crosscuting.helpers.TextHelper;
-import co.edu.uco.nose.crosscuting.helpers.UUIDHelper;
+import co.edu.uco.nose.crosscuting.helper.BooleanHelper;
+import co.edu.uco.nose.crosscuting.helper.ObjectHelper;
+import co.edu.uco.nose.crosscuting.helper.TextHelper;
+import co.edu.uco.nose.crosscuting.helper.UUIDHelper;
 
 import java.util.UUID;
 
@@ -34,8 +34,8 @@ public class UserEntity extends Entity {
         setSecondLastName(TextHelper.getDefault());
         setResidenceCity(CityEntity.getDefaultValue());
         setEmail(TextHelper.getDefault());
-        setCellPhoneNumber(TextHelper.getDefault());
-        setCellPhoneNumberConfirmed(BooleanHelper.getDefault());
+        setMobileNumber(TextHelper.getDefault());
+        setMobileNumberConfirmed(BooleanHelper.getDefault());
         setEmailConfirmed(BooleanHelper.getDefault());
     }
 
@@ -77,7 +77,7 @@ public class UserEntity extends Entity {
     }
 
     static UserEntity getDefaultValue(final UserEntity user) {
-        return ObjetcHelper.getDefault(user, getDefaultValue());
+        return ObjectHelper.getDefault(user, getDefaultValue());
     }
 
     public IdentificationTypeEntity getIdentificationType() {
@@ -85,7 +85,7 @@ public class UserEntity extends Entity {
     }
 
     public void setIdentificationType(final IdentificationTypeEntity identificationType) {
-        this.identificationType = ObjetcHelper.getDefault(identificationType, IdentificationTypeEntity.getDefaultValue());
+        this.identificationType = ObjectHelper.getDefault(identificationType, IdentificationTypeEntity.getDefaultValue());
     }
 
     public String getIdentificationNumber() {
@@ -168,6 +168,11 @@ public class UserEntity extends Entity {
         this.cellPhoneNumberConfirmed = BooleanHelper.getDeafult(cellPhoneNumberConfirmed);
     }
 
+    private void setMobileNumberConfirmed(boolean aDefault) {
+    }
+
+    private void setMobileNumber(String aDefault) {
+    }
 
     public Object getSecondName() {
         return null;

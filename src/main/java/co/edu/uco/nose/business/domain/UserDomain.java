@@ -2,38 +2,42 @@ package co.edu.uco.nose.business.domain;
 
 import java.util.UUID;
 
-import co.edu.uco.nose.crosscuting.helpers.BooleanHelper;
-import co.edu.uco.nose.crosscuting.helpers.ObjetcHelper;
-import co.edu.uco.nose.crosscuting.helpers.TextHelper;
-import co.edu.uco.nose.crosscuting.helpers.UUIDHelper;
+import co.edu.uco.nose.crosscuting.helper.BooleanHelper;
+import co.edu.uco.nose.crosscuting.helper.ObjectHelper;
+import co.edu.uco.nose.crosscuting.helper.TextHelper;
+import co.edu.uco.nose.crosscuting.helper.UUIDHelper;
 
 public class UserDomain extends Domain {
 
     private IdentificationTypeDomain identificationType;
     private String identificationNumber;
     private String firstName;
-    private String middleName;
-    private String lastName;
-    private String secondLastName;
-    private CityDomain residenceCity;
+    private String secondName;
+    private String firstSurname;
+    private String secondSurname;
+    private CityDomain homeCity;
     private String email;
-    private String cellPhoneNumber;
+    private String mobileNumber;
     private boolean emailConfirmed;
-    private boolean cellPhoneNumberConfirmed;
+    private boolean mobileNumberConfirmed;
+    private boolean emailConfirmedIsDefaultValue;
+    private boolean mobileNumberConfirmedIsDefaultValue;
 
     public UserDomain() {
         super(UUIDHelper.getUUIDHelper().getDefault());
         setIdentificationType(IdentificationTypeDomain.getDefaultValue());
         setIdentificationNumber(TextHelper.getDefault());;
         setFirstName(TextHelper.getDefault());
-        setMiddleName(TextHelper.getDefault());
-        setLastName(TextHelper.getDefault());
-        setSecondLastName(TextHelper.getDefault());
-        setResidenceCity(CityDomain.getDefaultValue());
+        setSecondName(TextHelper.getDefault());
+        setFirstSurname(TextHelper.getDefault());
+        setSecondSurname(TextHelper.getDefault());
+        setHomeCity(CityDomain.getDefaultValue());
         setEmail(TextHelper.getDefault());
-        setCellPhoneNumber(TextHelper.getDefault());
-        setCellPhoneNumberConfirmed(BooleanHelper.getDefault());
-        setEmailConfirmed(BooleanHelper.getDefault());
+        setMobileNumber(TextHelper.getDefault());
+        setMobileNumberConfirmed(false);
+        setEmailConfirmed(false);
+        setEmailConfirmedDefaultValue();
+        setMobileNumberConfirmedIsDefaultValue();
     }
 
     public UserDomain(final UUID id) {
@@ -41,32 +45,36 @@ public class UserDomain extends Domain {
         setIdentificationType(IdentificationTypeDomain.getDefaultValue());
         setIdentificationNumber(TextHelper.getDefault());
         setFirstName(TextHelper.getDefault());
-        setMiddleName(TextHelper.getDefault());
-        setLastName(TextHelper.getDefault());
-        setSecondLastName(TextHelper.getDefault());
-        setResidenceCity(CityDomain.getDefaultValue());
+        setSecondName(TextHelper.getDefault());
+        setFirstSurname(TextHelper.getDefault());
+        setSecondSurname(TextHelper.getDefault());
+        setHomeCity(CityDomain.getDefaultValue());
         setEmail(TextHelper.getDefault());
-        setCellPhoneNumber(TextHelper.getDefault());
-        setCellPhoneNumberConfirmed(BooleanHelper.getDefault());
+        setMobileNumber(TextHelper.getDefault());
+        setMobileNumberConfirmed(BooleanHelper.getDefault());
         setEmailConfirmed(BooleanHelper.getDefault());
+        setMobileNumberConfirmed(false);
+        setEmailConfirmed(false);
+        setEmailConfirmedDefaultValue();
+        setMobileNumberConfirmedIsDefaultValue();
     }
 
 
     public UserDomain(final UUID id, final IdentificationTypeDomain identificationType, final String identificationNumber, final String firstName,
-                      final String middleName, final String lastName, final String secondLastName, final CityDomain residenceCity, final String email,
-                      final String cellPhoneNumber, final boolean emailConfirmed, final boolean cellPhoneNumberConfirmed) {
+                      final String secondName, final String firstSurname, final String secondSurname, final CityDomain homeCity, final String email,
+                      final String mobileNumber, final boolean emailConfirmed, final boolean mobileNumberConfirmed) {
         super(id);
-        this.identificationType = identificationType;
-        this.identificationNumber = identificationNumber;
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.secondLastName = secondLastName;
-        this.residenceCity = residenceCity;
-        this.email = email;
-        this.cellPhoneNumber = cellPhoneNumber;
-        this.emailConfirmed = emailConfirmed;
-        this.cellPhoneNumberConfirmed = cellPhoneNumberConfirmed;
+        setIdentificationType(identificationType);
+        setIdentificationNumber(identificationNumber);
+        setFirstName(firstName);
+        setSecondName(secondName);
+        setFirstSurname(firstSurname);
+        setSecondSurname(secondSurname);
+        setHomeCity(homeCity);
+        setEmail(email);
+        setMobileNumber(mobileNumber);
+        setMobileNumberConfirmed(mobileNumberConfirmed);
+        setEmailConfirmed(emailConfirmed);
     }
 
     static UserDomain getDefaultValue() {
@@ -74,7 +82,7 @@ public class UserDomain extends Domain {
     }
 
     static UserDomain getDefaultValue(final UserDomain user) {
-        return ObjetcHelper.getDefault(user, getDefaultValue());
+        return ObjectHelper.getDefault(user, getDefaultValue());
     }
 
     public IdentificationTypeDomain getIdentificationType() {
@@ -82,7 +90,7 @@ public class UserDomain extends Domain {
     }
 
     public void setIdentificationType(final IdentificationTypeDomain identificationType) {
-        this.identificationType = ObjetcHelper.getDefault(identificationType, IdentificationTypeDomain.getDefaultValue());
+        this.identificationType = ObjectHelper.getDefault(identificationType, IdentificationTypeDomain.getDefaultValue());
     }
 
     public String getIdentificationNumber() {
@@ -101,36 +109,36 @@ public class UserDomain extends Domain {
         this.firstName = TextHelper.getDefaultWithTrim(firstName);
     }
 
-    public String getMiddleName() {
-        return middleName;
+    public String getSecondName() {
+        return secondName;
     }
 
-    public void setMiddleName(final String middleName) {
-        this.middleName = TextHelper.getDefaultWithTrim(middleName);
+    public void setSecondName(final String secondName) {
+        this.secondName = TextHelper.getDefaultWithTrim(secondName);
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getFirstSurname() {
+        return firstSurname;
     }
 
-    public void setLastName(final String lastName) {
-        this.lastName = TextHelper.getDefaultWithTrim(lastName);
+    public void setFirstSurname(final String firstSurname) {
+        this.firstSurname = TextHelper.getDefaultWithTrim(firstSurname);
     }
 
-    public String getSecondLastName() {
-        return secondLastName;
+    public String getSecondSurname() {
+        return secondSurname;
     }
 
-    public void setSecondLastName(final String secondLastName) {
-        this.secondLastName = TextHelper.getDefaultWithTrim(secondLastName);
+    public void setSecondSurname(final String secondSurname) {
+        this.secondSurname = TextHelper.getDefaultWithTrim(secondSurname);
     }
 
-    public CityDomain getResidenceCity() {
-        return residenceCity;
+    public CityDomain getHomeCity() {
+        return homeCity;
     }
 
-    public void setResidenceCity(final CityDomain residenceCity) {
-        this.residenceCity = ObjetcHelper.getDefault(residenceCity, CityDomain.getDefaultValue());
+    public void setHomeCity(final CityDomain homeCity) {
+        this.homeCity = ObjectHelper.getDefault(homeCity, CityDomain.getDefaultValue());
     }
 
     public String getEmail() {
@@ -141,12 +149,12 @@ public class UserDomain extends Domain {
         this.email = TextHelper.getDefaultWithTrim(email);
     }
 
-    public String getCellPhoneNumber() {
-        return cellPhoneNumber;
+    public String getMobileNumber() {
+        return mobileNumber;
     }
 
-    public void setCellPhoneNumber(final String cellPhoneNumber) {
-        this.cellPhoneNumber = TextHelper.getDefaultWithTrim(cellPhoneNumber);
+    public void setMobileNumber(final String mobileNumber) {
+        this.mobileNumber = TextHelper.getDefaultWithTrim(mobileNumber);
     }
 
     public boolean isEmailConfirmed() {
@@ -154,16 +162,35 @@ public class UserDomain extends Domain {
     }
 
     public void setEmailConfirmed(final boolean emailConfirmed) {
-        this.emailConfirmed = BooleanHelper.getDeafult(emailConfirmed);
+        this.emailConfirmed = BooleanHelper.getDefault(emailConfirmed);
     }
 
-    public boolean isCellPhoneNumberConfirmed() {
-        return cellPhoneNumberConfirmed;
+    public boolean isMobileNumberConfirmed() {
+        return mobileNumberConfirmed;
     }
 
-    public void setCellPhoneNumberConfirmed(final boolean cellPhoneNumberConfirmed) {
-        this.cellPhoneNumberConfirmed = BooleanHelper.getDeafult(cellPhoneNumberConfirmed);
+    public void setMobileNumberConfirmed(final boolean mobileNumberConfirmed) {
+        this.mobileNumberConfirmed = BooleanHelper.getDefault(mobileNumberConfirmed);
+        setMobileNumberConfirmed(false);
     }
+
+    public boolean isEmailConfirmedDefaultValue() {
+        return emailConfirmedIsDefaultValue;
+    }
+
+    private void setEmailConfirmedDefaultValue() {
+        this.emailConfirmedIsDefaultValue = true;
+        setEmailConfirmed(false);
+    }
+
+    public boolean isMobileNumberConfirmedDefaultValue() {
+        return mobileNumberConfirmedIsDefaultValue;
+    }
+
+    private void setMobileNumberConfirmedIsDefaultValue() {
+        this.mobileNumberConfirmedIsDefaultValue = true;
+    }
+
 
 
 }

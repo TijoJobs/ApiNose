@@ -1,7 +1,7 @@
 package co.edu.uco.nose.crosscuting.exception;
 
-import co.edu.uco.nose.crosscuting.helpers.ObjetcHelper;
-import co.edu.uco.nose.crosscuting.helpers.TextHelper;
+import co.edu.uco.nose.crosscuting.helper.ObjectHelper;
+import co.edu.uco.nose.crosscuting.helper.TextHelper;
 
 
 
@@ -27,15 +27,10 @@ public final class  NoseException extends RuntimeException {
         return new NoseException(new Exception(), userMessage, technicalMessage);
     }
 
-    public static NoseException create(Exception exception, String userMessage, final String technicalMessage){
-        return new NoseException(exception, userMessage, technicalMessage);
-    }
-
     public static NoseException create(final Throwable rootException, final  String userMessage, final String technicalMessage){
         return new NoseException(rootException, userMessage, technicalMessage);
     }
     public String getTechnicalMessage() {
-
         return technicalMessage;
     }
 
@@ -44,20 +39,22 @@ public final class  NoseException extends RuntimeException {
     }
 
     public Throwable getRootException() {
-
         return rootException;
     }
 
     public void setRootException(final Throwable rootException) {
-        this.rootException = ObjetcHelper.getDefault(rootException, new Exception());
+        this.rootException = ObjectHelper.getDefault(rootException, new Exception());
     }
 
     public String getUserMessage() {
-
         return userMessage;
     }
 
     private void setUserMessage(String userMessage) {
         this.userMessage = TextHelper.getDefaultWithTrim(userMessage);
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 }
