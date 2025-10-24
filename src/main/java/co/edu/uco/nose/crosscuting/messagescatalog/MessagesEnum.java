@@ -85,21 +85,18 @@ public enum MessagesEnum {
     TECHNICAL_ERROR_UNEXPECTED_EXCEPTION_FINDING_ENTITY("Error inesperado durante la operación de consulta.",
             "Se ha presentado un error no controlado durante la operación de consulta."),
 
-    // ===== MAPPER ERRORS =====
-    USER_ERROR_SQL_EXCEPTION_MAPPER("Ocurrió un error al obtener los datos desde la base de datos.",
-            "Error SQL al mapear los resultados desde el ResultSet."),
-    TECHNICAL_ERROR_SQL_EXCEPTION_MAPPER("Error técnico de SQL al mapear los resultados de la consulta.",
-            "Error técnico de tipo SQLException al mapear los resultados de la consulta."),
+    USER_ERROR_SQL_EXCEPTION_FINDING_ENTITY_WHILE_EXECTUION("Error durante la consulta de la información mientras se ejecutaba la operación.",
+            "Se ha presentado un problema tratando de consultar la información solicitada durante la ejecución. Por favor, intente de nuevo y si el problema persiste, contacte al administrador del sistema."
+    ),
+    TECHNICAL_ERROR_SQL_EXCEPTION_FINDING_ENTITY_WHILE_EXECTUION( "Error SQL durante la ejecución de la consulta.",
+            "Se presentó una excepción de tipo SQLException mientras se ejecutaba la operación de consulta en la base de datos."
+    ),
+    USER_ERROR_UNEXPECTED_EXCEPTION_FINDING_ENTITY_WHILE_EXECUTION("Error inesperado durante la ejecución de la consulta.",
+            "Se presentó un problema inesperado durante la ejecución de la consulta. Por favor, intente de nuevo y si el problema persiste, contacte al administrador del sistema."),
+    TECHNICAL_ERROR_UNEXPECTED_EXCEPTION_FINDING_ENTITY_WHILE_EXECUTION("Error inesperado ejecutando la operación de consulta.",
+            "Se presentó un error no controlado mientras se ejecutaba la operación de consulta contra la base de datos.");
 
-    USER_ERROR_UNEXPECTED_EXCEPTION_MAPPER("Ocurrió un error inesperado al procesar la información.",
-            "Error inesperado al mapear la información desde el ResultSet."),
-    TECHNICAL_ERROR_UNEXPECTED_EXCEPTION_MAPPER("Error técnico inesperado al mapear la información desde el ResultSet.",
-            "Error técnico no controlado al mapear la información desde el ResultSet."),
 
-    USER_ERROR_NULL_RESULTSET_MAPPER("No se recibieron datos válidos desde la base de datos.",
-            "El ResultSet está vacío o es nulo al intentar mapear los datos."),
-    TECHNICAL_ERROR_NULL_RESULTSET_MAPPER("El ResultSet está vacío o es nulo al intentar mapear los datos.",
-            "ResultSet nulo o sin filas cuando se esperaba contenido para mapear.");
 
     private String title;
     private String content;

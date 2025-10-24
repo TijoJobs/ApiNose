@@ -5,6 +5,7 @@ import co.edu.uco.nose.entity.IdentificationTypeEntity;
 import java.util.UUID;
 
 
-public interface IdentificationTypeDAO extends RetrieveDAO <IdentificationTypeEntity, UUID> {
+public interface IdentificationTypeDAO extends
+        RetrieveDAO <IdentificationTypeEntity, UUID> {
 }
 

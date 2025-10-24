@@ -1,6 +1,5 @@
 package co.edu.uco.nose.entity;
 
-import co.edu.uco.nose.entity.Entity;
 import co.edu.uco.nose.crosscuting.helper.ObjectHelper;
 import co.edu.uco.nose.crosscuting.helper.TextHelper;
 import co.edu.uco.nose.crosscuting.helper.UUIDHelper;

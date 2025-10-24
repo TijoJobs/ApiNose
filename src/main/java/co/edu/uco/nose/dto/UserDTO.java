@@ -1,38 +1,41 @@
 package co.edu.uco.nose.dto;
 
-import co.edu.uco.nose.crosscuting.helper.BooleanHelper;
 import co.edu.uco.nose.crosscuting.helper.ObjectHelper;
 import co.edu.uco.nose.crosscuting.helper.TextHelper;
 import co.edu.uco.nose.crosscuting.helper.UUIDHelper;
-
 import java.util.UUID;
+
 public class UserDTO {
     private UUID id;
     private IdentificationTypeDTO identificationType;
     private String identificationNumber;
     private String firstName;
-    private String middleName;
-    private String lastName;
-    private String secondLastName;
-    private CityDTO residenceCity;
+    private String secondName;
+    private String firstSurname;
+    private String secondSurname;
+    private CityDTO homeCity;
     private String email;
-    private String cellPhoneNumber;
+    private String mobileNumber;
     private boolean emailConfirmed;
-    private boolean cellPhoneNumberConfirmed;
+    private boolean mobileNumberConfirmed;
+    private boolean emailConfirmedIsDefaultValue;
+    private boolean mobileNumberConfirmedIsDefaultValue;
 
     public UserDTO() {
         setId(UUIDHelper.getUUIDHelper().getDefault());
         setIdentificationType(IdentificationTypeDTO.getDefaultValue());
         setIdentificationNumber(TextHelper.getDefault());
         setFirstName(TextHelper.getDefault());
-        setMiddleName(TextHelper.getDefault());
-        setLastName(TextHelper.getDefault());
-        setSecondLastName(TextHelper.getDefault());
-        setResidenceCity(CityDTO.getDefaultValue());
+        setSecondName(TextHelper.getDefault());
+        setFirstSurname(TextHelper.getDefault());
+        setSecondSurname(TextHelper.getDefault());
+        setHomeCity(CityDTO.getDefaultValue());
         setEmail(TextHelper.getDefault());
-        setCellPhoneNumber(TextHelper.getDefault());
-        setEmailConfirmed(BooleanHelper.getDefault(cellPhoneNumberConfirmed));
-        setCellPhoneNumberConfirmed(BooleanHelper.getDefault(cellPhoneNumberConfirmed));
+        setMobileNumber(TextHelper.getDefault());
+        setMobileNumberConfirmed(false);
+        setEmailConfirmed(false);
+        setEmailConfirmedIsDefaultValue(false);
+        setMobileNumberConfirmedIsDefaultValue(true);
     }
 
     public UserDTO(final UUID id) {
@@ -40,34 +43,33 @@ public class UserDTO {
         setIdentificationType(IdentificationTypeDTO.getDefaultValue());
         setIdentificationNumber(TextHelper.getDefault());
         setFirstName(TextHelper.getDefault());
-        setMiddleName(TextHelper.getDefault());
-        setLastName(TextHelper.getDefault());
-        setSecondLastName(TextHelper.getDefault());
-        setResidenceCity(CityDTO.getDefaultValue());
+        setSecondName(TextHelper.getDefault());
+        setFirstSurname(TextHelper.getDefault());
+        setSecondSurname(TextHelper.getDefault());
+        setHomeCity(CityDTO.getDefaultValue());
         setEmail(TextHelper.getDefault());
-        setCellPhoneNumber(TextHelper.getDefault());
-        setEmailConfirmed(BooleanHelper.getDefault(cellPhoneNumberConfirmed));
-        setCellPhoneNumberConfirmed(BooleanHelper.getDefault(cellPhoneNumberConfirmed));
+        setMobileNumber(TextHelper.getDefault());
+        setMobileNumberConfirmed(false);
+        setEmailConfirmed(false);
+        setEmailConfirmedIsDefaultValue(true);
+        setMobileNumberConfirmedIsDefaultValue(true);
     }
 
-    public UserDTO(final UUID id, final IdentificationTypeDTO identificationType,
-                   final String identificationNumber, final String firstName,
-                   final String middleName, final String lastName,
-                   final String secondLastName, final CityDTO residenceCity,
-                   final String email, final String cellPhoneNumber,
-                   final boolean emailConfirmed, final boolean cellPhoneNumberConfirmed) {
+    public UserDTO(final UUID id, final IdentificationTypeDTO identificationType, final String identificationNumber, final String firstName,
+                   final String secondName, final String firstSurname, final String secondSurname, final CityDTO homeCity, final String email,
+                   final String mobileNumber, final boolean emailConfirmed, final boolean mobileNumberConfirmed) {
         setId(id);
         setIdentificationType(identificationType);
         setIdentificationNumber(identificationNumber);
         setFirstName(firstName);
-        setMiddleName(middleName);
-        setLastName(lastName);
-        setSecondLastName(secondLastName);
-        setResidenceCity(residenceCity);
+        setSecondName(secondName);
+        setFirstSurname(firstSurname);
+        setSecondSurname(secondSurname);
+        setHomeCity(homeCity);
         setEmail(email);
-        setCellPhoneNumber(cellPhoneNumber);
+        setMobileNumber(mobileNumber);
+        setMobileNumberConfirmed(mobileNumberConfirmed);
         setEmailConfirmed(emailConfirmed);
-        setCellPhoneNumberConfirmed(cellPhoneNumberConfirmed);
     }
 
     static UserDTO getDefaultValue() {
@@ -82,15 +84,15 @@ public class UserDTO {
         return id;
     }
 
-    public void setId(final UUID id) {
-        this.id = UUIDHelper.getUUIDHelper().getDefault(id);
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public IdentificationTypeDTO getIdentificationType() {
         return identificationType;
     }
 
-    public void setIdentificationType(final IdentificationTypeDTO identificationType) {
+    public void setIdentificationType(IdentificationTypeDTO identificationType) {
         this.identificationType = ObjectHelper.getDefault(identificationType, IdentificationTypeDTO.getDefaultValue());
     }
 
@@ -98,7 +100,7 @@ public class UserDTO {
         return identificationNumber;
     }
 
-    public void setIdentificationNumber(final String identificationNumber) {
+    public void setIdentificationNumber(String identificationNumber) {
         this.identificationNumber = TextHelper.getDefaultWithTrim(identificationNumber);
     }
 
@@ -106,74 +108,89 @@ public class UserDTO {
         return firstName;
     }
 
-    public void setFirstName(final String firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = TextHelper.getDefaultWithTrim(firstName);
     }
 
-    public String getMiddleName() {
-        return middleName;
+    public String getSecondName() {
+        return secondName;
     }
 
-    public void setMiddleName(final String middleName) {
-        this.middleName = TextHelper.getDefaultWithTrim(middleName);
+    public void setSecondName(String secondName) {
+        this.secondName = TextHelper.getDefaultWithTrim(secondName);
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getFirstSurname() {
+        return firstSurname;
     }
 
-    public void setLastName(final String lastName) {
-        this.lastName = TextHelper.getDefaultWithTrim(lastName);
+    public void setFirstSurname(String firstSurname) {
+        this.firstSurname = TextHelper.getDefaultWithTrim(firstSurname);
     }
 
-    public String getSecondLastName() {
-        return secondLastName;
+    public String getSecondSurname() {
+        return secondSurname;
     }
 
-    public void setSecondLastName(final String secondLastName) {
-        this.secondLastName = TextHelper.getDefaultWithTrim(secondLastName);
+    public void setSecondSurname(String secondSurname) {
+        this.secondSurname = TextHelper.getDefaultWithTrim(secondSurname);
     }
 
-    public CityDTO getResidenceCity() {
-        return residenceCity;
+    public CityDTO getHomeCity() {
+        return homeCity;
     }
 
-    public void setResidenceCity(final CityDTO residenceCity) {
-        this.residenceCity = ObjectHelper.getDefault(residenceCity, CityDTO.getDefaultValue());
+    public void setHomeCity(CityDTO homeCity) {
+        this.homeCity = ObjectHelper.getDefault(homeCity, getHomeCity());
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(final String email) {
+    public void setEmail(String email) {
         this.email = TextHelper.getDefaultWithTrim(email);
     }
 
-    public String getCellPhoneNumber() {
-        return cellPhoneNumber;
+    public String getMobileNumber() {
+        return mobileNumber;
     }
 
-    public void setCellPhoneNumber(final String cellPhoneNumber) {
-        this.cellPhoneNumber = TextHelper.getDefaultWithTrim(cellPhoneNumber);
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = TextHelper.getDefaultWithTrim(mobileNumber);
     }
 
     public boolean isEmailConfirmed() {
         return emailConfirmed;
     }
 
-    public void setEmailConfirmed(final boolean emailConfirmed) {
-        this.emailConfirmed = BooleanHelper.getDefault(emailConfirmed);
+    public void setEmailConfirmed(boolean emailConfirmed) {
+        this.emailConfirmed = emailConfirmed;
+        setEmailConfirmedIsDefaultValue(false);
     }
 
-    public boolean isCellPhoneNumberConfirmed() {
-        return cellPhoneNumberConfirmed;
+    public boolean isMobileNumberConfirmed() {
+        return mobileNumberConfirmed;
     }
 
-    public void setCellPhoneNumberConfirmed(final boolean cellPhoneNumberConfirmed) {
-        this.cellPhoneNumberConfirmed = BooleanHelper.getDefault(cellPhoneNumberConfirmed);
+    public void setMobileNumberConfirmed(boolean mobileNumberConfirmed) {
+        this.mobileNumberConfirmed = mobileNumberConfirmed;
+        setMobileNumberConfirmedIsDefaultValue(false);
     }
 
+    public boolean isEmailConfirmedIsDefaultValue() {
+        return emailConfirmedIsDefaultValue;
+    }
 
+    public void setEmailConfirmedIsDefaultValue(boolean emailConfirmedIsDefaultValue) {
+        this.emailConfirmedIsDefaultValue = emailConfirmedIsDefaultValue;
+    }
 
+    public boolean isMobileNumberConfirmedIsDefaultValue() {
+        return mobileNumberConfirmedIsDefaultValue;
+    }
+
+    public void setMobileNumberConfirmedIsDefaultValue(boolean mobileNumberConfirmedIsDefaultValue) {
+        this.mobileNumberConfirmedIsDefaultValue = mobileNumberConfirmedIsDefaultValue;
+    }
 }

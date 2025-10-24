@@ -8,6 +8,9 @@ import co.edu.uco.nose.crosscuting.helper.UUIDHelper;
 import co.edu.uco.nose.dto.CountryDTO;
 import co.edu.uco.nose.dto.IdentificationTypeDTO;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public final class IdentificationTypeDTOAssembler implements DTOAssembler <IdentificationTypeDTO, IdentificationTypeDomain> {
     private static final DTOAssembler <IdentificationTypeDTO, IdentificationTypeDomain> instance = new IdentificationTypeDTOAssembler();
 
@@ -28,5 +31,14 @@ public final class IdentificationTypeDTOAssembler implements DTOAssembler <Ident
     public IdentificationTypeDomain toDomain(final IdentificationTypeDTO dto) {
         var dtoTmp = ObjectHelper.getDefault(dto, new IdentificationTypeDTO());
         return new IdentificationTypeDomain(dtoTmp.getId(), dtoTmp.getName());
+    }
+
+    @Override
+    public List<IdentificationTypeDTO> toDTO(List<IdentificationTypeDomain> domainList) {
+        var identificationTypeDTOList = new ArrayList<IdentificationTypeDTO>();
+        for (var identificationTypeDomain : domainList) {
+            identificationTypeDTOList.add(toDTO(identificationTypeDomain));
+        }
+        return identificationTypeDTOList;
     }
 }

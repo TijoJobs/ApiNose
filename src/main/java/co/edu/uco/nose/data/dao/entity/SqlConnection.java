@@ -1,6 +1,5 @@
 package co.edu.uco.nose.data.dao.entity;
 import co.edu.uco.nose.crosscuting.helper.SqlConnectionHelper;
-
 import java.sql.Connection;
 
 public abstract class SqlConnection {
@@ -11,7 +10,7 @@ public abstract class SqlConnection {
         setConnection(connection);
     }
 
-    public Connection getConnection() {
+    protected Connection getConnection() {
         return connection;
     }
 

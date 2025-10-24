@@ -1,75 +1,78 @@
 package co.edu.uco.nose.entity;
 
-import co.edu.uco.nose.entity.UserEntity;
-import co.edu.uco.nose.entity.Entity;
-import co.edu.uco.nose.business.domain.IdentificationTypeDomain;
-import co.edu.uco.nose.crosscuting.helper.BooleanHelper;
 import co.edu.uco.nose.crosscuting.helper.ObjectHelper;
 import co.edu.uco.nose.crosscuting.helper.TextHelper;
 import co.edu.uco.nose.crosscuting.helper.UUIDHelper;
 
 import java.util.UUID;
 
-public class UserEntity extends Entity {
+public class UserEntity {
 
+    private UUID id;
     private IdentificationTypeEntity identificationType;
     private String identificationNumber;
     private String firstName;
-    private String middleName;
-    private String lastName;
-    private String secondLastName;
-    private CityEntity residenceCity;
+    private String secondName;
+    private String firstSurname;
+    private String secondSurname;
+    private CityEntity homeCity;
     private String email;
-    private String cellPhoneNumber;
+    private String mobileNumber;
     private boolean emailConfirmed;
-    private boolean cellPhoneNumberConfirmed;
+    private boolean mobileNumberConfirmed;
+    private boolean emailConfirmedIsDefaultValue;
+    private boolean mobileNumberConfirmedIsDefaultValue;
 
     public UserEntity() {
-        super(UUIDHelper.getUUIDHelper().getDefault());
-        setIdentificationType(IdentificationTypeEntity.getDefaultValue());
-        setIdentificationNumber(TextHelper.getDefault());;
-        setFirstName(TextHelper.getDefault());
-        setMiddleName(TextHelper.getDefault());
-        setLastName(TextHelper.getDefault());
-        setSecondLastName(TextHelper.getDefault());
-        setResidenceCity(CityEntity.getDefaultValue());
-        setEmail(TextHelper.getDefault());
-        setMobileNumber(TextHelper.getDefault());
-        setMobileNumberConfirmed(BooleanHelper.getDefault());
-        setEmailConfirmed(BooleanHelper.getDefault());
-    }
-
-    public UserEntity(final UUID id) {
-        super(id);
+        setId(UUIDHelper.getUUIDHelper().getDefault());
         setIdentificationType(IdentificationTypeEntity.getDefaultValue());
         setIdentificationNumber(TextHelper.getDefault());
         setFirstName(TextHelper.getDefault());
-        setMiddleName(TextHelper.getDefault());
-        setLastName(TextHelper.getDefault());
-        setSecondLastName(TextHelper.getDefault());
-        setResidenceCity(CityEntity.getDefaultValue());
+        setSecondName(TextHelper.getDefault());
+        setFirstSurname(TextHelper.getDefault());
+        setSecondSurname(TextHelper.getDefault());
+        setHomeCity(CityEntity.getDefaultValue());
         setEmail(TextHelper.getDefault());
-        setCellPhoneNumber(TextHelper.getDefault());
-        setCellPhoneNumberConfirmed(BooleanHelper.getDefault());
-        setEmailConfirmed(BooleanHelper.getDefault());
+        setMobileNumber(TextHelper.getDefault());
+        setMobileNumberConfirmed(false);
+        setEmailConfirmed(false);
+        setEmailConfirmedIsDefaultValue(false);
+        setMobileNumberConfirmedIsDefaultValue(true);
+    }
+
+    public UserEntity(final UUID id) {
+        setId(id);
+        setIdentificationType(IdentificationTypeEntity.getDefaultValue());
+        setIdentificationNumber(TextHelper.getDefault());
+        setFirstName(TextHelper.getDefault());
+        setSecondName(TextHelper.getDefault());
+        setFirstSurname(TextHelper.getDefault());
+        setSecondSurname(TextHelper.getDefault());
+        setHomeCity(CityEntity.getDefaultValue());
+        setEmail(TextHelper.getDefault());
+        setMobileNumber(TextHelper.getDefault());
+        setMobileNumberConfirmed(false);
+        setEmailConfirmed(false);
+        setEmailConfirmedIsDefaultValue(true);
+        setMobileNumberConfirmedIsDefaultValue(true);
     }
 
 
     public UserEntity(final UUID id, final IdentificationTypeEntity identificationType, final String identificationNumber, final String firstName,
-                      final String middleName, final String lastName, final String secondLastName, final CityEntity residenceCity, final String email,
-                      final String cellPhoneNumber, final boolean emailConfirmed, final boolean cellPhoneNumberConfirmed) {
-        super(id);
-        this.identificationType = identificationType;
-        this.identificationNumber = identificationNumber;
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.secondLastName = secondLastName;
-        this.residenceCity = residenceCity;
-        this.email = email;
-        this.cellPhoneNumber = cellPhoneNumber;
-        this.emailConfirmed = emailConfirmed;
-        this.cellPhoneNumberConfirmed = cellPhoneNumberConfirmed;
+                      final String secondName, final String firstSurname, final String secondSurname, final CityEntity homeCity, final String email,
+                      final String mobileNumber, final boolean emailConfirmed, final boolean mobileNumberConfirmed) {
+        setId(id);
+        setIdentificationType(identificationType);
+        setIdentificationNumber(identificationNumber);
+        setFirstName(firstName);
+        setSecondName(secondName);
+        setFirstSurname(firstSurname);
+        setSecondSurname(secondSurname);
+        setHomeCity(homeCity);
+        setEmail(email);
+        setMobileNumber(mobileNumber);
+        setMobileNumberConfirmed(mobileNumberConfirmed);
+        setEmailConfirmed(emailConfirmed);
     }
 
     static UserEntity getDefaultValue() {
@@ -79,6 +82,15 @@ public class UserEntity extends Entity {
     static UserEntity getDefaultValue(final UserEntity user) {
         return ObjectHelper.getDefault(user, getDefaultValue());
     }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(final UUID id) {
+        this.id = UUIDHelper.getUUIDHelper().getDefault(id);
+    }
+
 
     public IdentificationTypeEntity getIdentificationType() {
         return identificationType;
@@ -104,36 +116,36 @@ public class UserEntity extends Entity {
         this.firstName = TextHelper.getDefaultWithTrim(firstName);
     }
 
-    public String getMiddleName() {
-        return middleName;
+    public String getSecondName() {
+        return secondName;
     }
 
-    public void setMiddleName(final String middleName) {
-        this.middleName = TextHelper.getDefaultWithTrim(middleName);
+    public void setSecondName(final String secondName) {
+        this.secondName = TextHelper.getDefaultWithTrim(secondName);
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getFirstSurname() {
+        return firstSurname;
     }
 
-    public void setLastName(final String lastName) {
-        this.lastName = TextHelper.getDefaultWithTrim(lastName);
+    public void setFirstSurname(final String firstSurname) {
+        this.firstSurname = TextHelper.getDefaultWithTrim(firstSurname);
     }
 
-    public String getSecondLastName() {
-        return secondLastName;
+    public String getSecondSurname() {
+        return secondSurname;
     }
 
-    public void setSecondLastName(final String secondLastName) {
-        this.secondLastName = TextHelper.getDefaultWithTrim(secondLastName);
+    public void setSecondSurname(final String secondSurname) {
+        this.secondSurname = TextHelper.getDefaultWithTrim(secondSurname);
     }
 
-    public CityEntity getResidenceCity() {
-        return residenceCity;
+    public CityEntity getHomeCity() {
+        return homeCity;
     }
 
-    public void setResidenceCity(final CityEntity residenceCity) {
-        this.residenceCity = ObjetcHelper.getDefault(residenceCity, CityEntity.getDefaultValue());
+    public void setHomeCity(final CityEntity homeCity) {
+        this.homeCity = ObjectHelper.getDefault(homeCity, CityEntity.getDefaultValue());
     }
 
     public String getEmail() {
@@ -144,12 +156,12 @@ public class UserEntity extends Entity {
         this.email = TextHelper.getDefaultWithTrim(email);
     }
 
-    public String getCellPhoneNumber() {
-        return cellPhoneNumber;
+    public String getMobileNumber() {
+        return mobileNumber;
     }
 
-    public void setCellPhoneNumber(final String cellPhoneNumber) {
-        this.cellPhoneNumber = TextHelper.getDefaultWithTrim(cellPhoneNumber);
+    public void setMobileNumber(final String mobileNumber) {
+        this.mobileNumber = TextHelper.getDefaultWithTrim(mobileNumber);
     }
 
     public boolean isEmailConfirmed() {
@@ -157,24 +169,33 @@ public class UserEntity extends Entity {
     }
 
     public void setEmailConfirmed(final boolean emailConfirmed) {
-        this.emailConfirmed = BooleanHelper.getDeafult(emailConfirmed);
+        this.emailConfirmed = emailConfirmed;
+        setEmailConfirmedIsDefaultValue(false);
     }
 
-    public boolean isCellPhoneNumberConfirmed() {
-        return cellPhoneNumberConfirmed;
+    public boolean isMobileNumberConfirmed() {
+        return mobileNumberConfirmed;
     }
 
-    public void setCellPhoneNumberConfirmed(final boolean cellPhoneNumberConfirmed) {
-        this.cellPhoneNumberConfirmed = BooleanHelper.getDeafult(cellPhoneNumberConfirmed);
+    public void setMobileNumberConfirmed(final boolean mobileNumberConfirmed) {
+        this.mobileNumberConfirmed = mobileNumberConfirmed;
+        setMobileNumberConfirmedIsDefaultValue(false);
     }
 
-    private void setMobileNumberConfirmed(boolean aDefault) {
+    public boolean isEmailConfirmedIsDefaultValue() {
+        return emailConfirmedIsDefaultValue;
     }
 
-    private void setMobileNumber(String aDefault) {
+    public void setEmailConfirmedIsDefaultValue(final boolean emailConfirmedIsDefaultValue) {
+        this.emailConfirmedIsDefaultValue = emailConfirmedIsDefaultValue;
     }
 
-    public Object getSecondName() {
-        return null;
+    public boolean isMobileNumberConfirmedIsDefaultValue() {
+        return mobileNumberConfirmedIsDefaultValue;
+    }
+
+    public void setMobileNumberConfirmedIsDefaultValue(final boolean mobileNumberConfirmedIsDefaultValue) {
+        this.mobileNumberConfirmedIsDefaultValue = mobileNumberConfirmedIsDefaultValue;
     }
 }
+

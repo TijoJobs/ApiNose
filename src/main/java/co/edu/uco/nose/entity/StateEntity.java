@@ -1,34 +1,32 @@
 package co.edu.uco.nose.entity;
 
-import co.edu.uco.nose.entity.CountryEntity;
-import co.edu.uco.nose.entity.Entity;
-import co.edu.uco.nose.crosscuting.helpers.ObjetcHelper;
-import co.edu.uco.nose.crosscuting.helpers.TextHelper;
-import co.edu.uco.nose.crosscuting.helpers.UUIDHelper;
+import co.edu.uco.nose.crosscuting.helper.ObjectHelper;
+import co.edu.uco.nose.crosscuting.helper.TextHelper;
+import co.edu.uco.nose.crosscuting.helper.UUIDHelper;
 
 import java.util.UUID;
 
-public class StateEntity extends Entity {
-
+public class StateEntity {
+    private UUID id;
     private String name;
     private CountryEntity country;
 
     public StateEntity() {
-        super(UUIDHelper.getUUIDHelper().getDefault());
+        setId(UUIDHelper.getUUIDHelper().getDefault());
         setName(TextHelper.getDefault());
         setCountry(CountryEntity.getDefaultValue());
     }
 
     public StateEntity(final UUID id) {
-        super(id);
+        setId(id);
         setName(TextHelper.getDefault());
         setCountry(CountryEntity.getDefaultValue());
     }
 
     public StateEntity(final UUID id, final String name, final CountryEntity country) {
-        super(id);
-        this.name = name;
-        this.country = country;
+        setId(id);
+        setName(name);
+        setCountry(country);
     }
 
     static StateEntity getDefaultValue() {
@@ -36,8 +34,17 @@ public class StateEntity extends Entity {
     }
 
     static StateEntity getDefaultValue(final StateEntity state) {
-        return ObjetcHelper.getDefault(state, getDefaultValue());
+        return ObjectHelper.getDefault(state, getDefaultValue());
     }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(final UUID id) {
+        this.id = UUIDHelper.getUUIDHelper().getDefault(id);
+    }
+
 
     public String getName() {
         return name;
@@ -52,7 +59,7 @@ public class StateEntity extends Entity {
     }
 
     public void setCountry(final CountryEntity country) {
-        this.country = ObjetcHelper.getDefault(country, CountryEntity.getDefaultValue());
+        this.country = ObjectHelper.getDefault(country, CountryEntity.getDefaultValue());
     }
 
 

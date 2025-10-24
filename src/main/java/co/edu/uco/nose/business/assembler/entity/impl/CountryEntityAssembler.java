@@ -1,11 +1,9 @@
 package co.edu.uco.nose.business.assembler.entity.impl;
 
 import co.edu.uco.nose.business.assembler.entity.EntityAssembler;
-import co.edu.uco.nose.business.domain.CityDomain;
 import co.edu.uco.nose.business.domain.CountryDomain;
 import co.edu.uco.nose.crosscuting.helper.ObjectHelper;
 import co.edu.uco.nose.crosscuting.helper.UUIDHelper;
-import co.edu.uco.nose.entity.CityEntity;
 import co.edu.uco.nose.entity.CountryEntity;
 
 public final class CountryEntityAssembler implements EntityAssembler<CountryEntity, CountryDomain> {
@@ -15,7 +13,7 @@ public final class CountryEntityAssembler implements EntityAssembler<CountryEnti
 
     }
 
-    public static EntityAssembler <CountryEntity, CountryDomain> getCityEntityAssembler(){
+    public static EntityAssembler <CountryEntity, CountryDomain> getCountryEntityAssembler(){
         return instance;
     }
     @Override
@@ -26,7 +24,7 @@ public final class CountryEntityAssembler implements EntityAssembler<CountryEnti
 
     @Override
     public CountryDomain toDomain(final CountryEntity entity) {
-        var dtoTmp = ObjectHelper.getDefault(entity, new CountryEntity());
-        return new CountryDomain(dtoTmp.getId(), dtoTmp.getName());
+        var entityTmp = ObjectHelper.getDefault(entity, new CountryEntity());
+        return new CountryDomain(entityTmp.getId(), entityTmp.getName());
     }
 }

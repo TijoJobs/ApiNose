@@ -66,4 +66,24 @@ public final class UserBusinessImpl implements UserBusiness {
     public UserDomain findSpecificUser(UUID id) {
         return null;
     }
+
+    @Override
+    public void confirmMobileNumber(UUID id, int confirmationCode) {
+
+    }
+
+    @Override
+    public void confirmEmail(UUID id, int confirmationCode) {
+
+    }
+
+    @Override
+    public void sendMobileNumberConfirmation(UUID id) {
+
+    }
+
+    @Override
+    public void sendEmailConfirmation(UUID id) {
+
+    }
 }

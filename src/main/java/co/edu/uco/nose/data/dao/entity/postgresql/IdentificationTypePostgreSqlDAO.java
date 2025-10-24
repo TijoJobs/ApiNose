@@ -11,7 +11,7 @@ import co.edu.uco.nose.crosscuting.exception.NoseException;
 import co.edu.uco.nose.data.dao.entity.IdentificationTypeDAO;
 import co.edu.uco.nose.data.dao.entity.SqlConnection;
 import co.edu.uco.nose.entity.IdentificationTypeEntity;
-import co.edu.uco.nose.data.dao.entity.mapper.IdentificationTypeMapper;
+
 
 
 public final class IdentificationTypePostgreSqlDAO extends SqlConnection implements IdentificationTypeDAO {

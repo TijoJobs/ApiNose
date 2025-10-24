@@ -1,6 +1,5 @@
 package co.edu.uco.nose.dto;
 
-import co.edu.uco.nose.business.domain.CountryDomain;
 import co.edu.uco.nose.crosscuting.helper.TextHelper;
 import co.edu.uco.nose.crosscuting.helper.ObjectHelper;
 import co.edu.uco.nose.crosscuting.helper.UUIDHelper;
@@ -30,22 +29,6 @@ public class StateDTO {
         setCountry(country);
     }
 
-    public StateDTO(UUID id, String name) {
-        setId(id);
-        setName(name);
-    }
-
-    public StateDTO(UUID id, CountryDTO country, String name) {
-        this.id = id;
-        this.country = country;
-        this.name = name;
-    }
-
-    public StateDTO(UUID id, String name, CountryDomain domain) {
-        setId(id);
-        setName(name);
-        setCountry(CountryDTO.getDefaultValue());
-    }
 
     static StateDTO getDefaultValue() {
         return new StateDTO();

@@ -7,65 +7,61 @@ import co.edu.uco.nose.data.dao.entity.CityDAO;
 import co.edu.uco.nose.data.dao.entity.CountryDAO;
 import co.edu.uco.nose.data.dao.entity.StateDAO;
 import co.edu.uco.nose.data.dao.entity.UserDAO;
-import co.edu.uco.nose.data.dao.factory.sqlserver.SqlServerDAOFactory;
+import co.edu.uco.nose.data.dao.factory.postgresql.PostgreSqlDAOFactory;
+import co.edu.uco.nose.crosscuting.messagescatalog.MessagesEnum;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
 public abstract class DAOFactory {
     protected Connection connection;
-    protected static FactoryEnum factory = FactoryEnum.SQLSERVER;
+    protected static FactoryEnum factory = FactoryEnum.POSTGRESQL;
 
     public static DAOFactory getFactory() {
         switch (factory) {
-            case SQLSERVER:
-                return new SqlServerDAOFactory();
+            case POSTGRESQL:
+                return new PostgreSqlDAOFactory();
             default:
-                var userMessage = "Factoria no iniciada";
-                var technicalMessage = "Factoria no valida";
+                var userMessage = MessagesEnum.USER_ERROR_FACTORY_NOT_INITIALIZED.getContent();
+                var technicalMessage = MessagesEnum.TECHNICAL_ERROR_FACTORY_NOT_VALIDATED.getContent();
                 throw NoseException.create(userMessage, technicalMessage);
         }
     }
-
-
 
     public abstract CityDAO getCityDAO();
     public abstract CountryDAO getCountryDAO();
     public abstract IdentificationTypeDAO getIdentificationTypeDAO();
     public abstract StateDAO getStateDAO();
     public abstract UserDAO getUserDAO();
-
     protected abstract void openConnection();
+
     public final void initTransaction(){
         SqlConnectionHelper.ensureTransactionIsNotStarted(connection);
 
         try{
             connection.setAutoCommit(false);
         } catch (final SQLException exception){
-            var userMessage = "";
-            var technicalMessage = "";
+            var userMessage = MessagesEnum.USER_ERROR_SQL_CONNECTION_UNEXPECTED_ERROR_VALIDATING_TRANSACTION_IS_STARTED.getContent();
+            var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_CONNECTION_SQL_EXCEPTION_VALIDATING_TRANSACTION_IS_STARTED.getContent();
             throw NoseException.create(exception, userMessage, technicalMessage);
         } catch (final Exception exception){
-            var userMessage = "a";
-            var techincalMessage = "b";
-            throw NoseException.create(exception, userMessage, techincalMessage);
+            var userMessage = MessagesEnum.USER_ERROR_SQL_CONNECTION_UNEXPECTED_ERROR_VALIDATING_TRANSACTION_IS_STARTED.getContent();
+            var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_CONNECTION_UNEXPECTED_ERROR_VALIDATING_TRANSACTION_IS_STARTED.getContent();
+            throw NoseException.create(exception, userMessage, technicalMessage);
         }
-
     }
-
     public final void commitTransaction(){
-
         SqlConnectionHelper.ensureTransactionIsStarted(connection);
 
         try{
-            connection.setAutoCommit(false);
+            connection.commit();
         } catch (final SQLException exception){
-            var userMessage = "";
-            var techincalMessage = "";
+            var userMessage = MessagesEnum.USER_ERROR_SQL_CONNECTION_UNEXPECTED_ERROR_VALIDATING_TRANSACTION_IS_NOT_STARTED.getContent();
+            var techincalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_CONNECTION_SQL_EXCEPTION_VALIDATING_TRANSACTION_IS_NOT_STARTED.getContent();
             throw NoseException.create( exception, userMessage, techincalMessage);
         } catch (final Exception exception){
-            var userMessage = "a";
-            var technicalMessage = "b";
+            var userMessage =  MessagesEnum.USER_ERROR_SQL_CONNECTION_UNEXPECTED_ERROR_VALIDATING_TRANSACTION_IS_NOT_STARTED.getContent();
+            var technicalMessage =  MessagesEnum.TECHNICAL_ERROR_SQL_CONNECTION_UNEXPECTED_ERROR_VALIDATING_TRANSACTION_IS_NOT_STARTED.getContent();
             throw NoseException.create(exception , userMessage, technicalMessage);
         }
     }
@@ -75,12 +71,12 @@ public abstract class DAOFactory {
         try{
             connection.rollback();
         } catch (final SQLException exception){
-            var userMessage = "";
-            var technicalMessage = "";
+            var userMessage = MessagesEnum.USER_ERROR_SQL_CONNECTION_UNEXPECTED_ERROR_VALIDATING_TRANSACTION_IS_NOT_STARTED.getContent();
+            var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_CONNECTION_SQL_EXCEPTION_VALIDATING_TRANSACTION_IS_NOT_STARTED.getContent() ;
             throw NoseException.create(exception , userMessage, technicalMessage);
         } catch (final Exception exception){
-            var userMessage = "a";
-            var technicalMessage = "b";
+            var userMessage =  MessagesEnum.USER_ERROR_SQL_CONNECTION_UNEXPECTED_ERROR_VALIDATING_TRANSACTION_IS_NOT_STARTED.getContent();
+            var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_CONNECTION_UNEXPECTED_ERROR_VALIDATING_TRANSACTION_IS_NOT_STARTED.getContent();
             throw NoseException.create(exception, userMessage, technicalMessage);
         }
     }
@@ -91,12 +87,12 @@ public abstract class DAOFactory {
         try{
             connection.close();
         } catch (final SQLException exception){
-            var userMessage = "";
-            var technicalMessage = "";
+            var userMessage = MessagesEnum.USER_ERROR_SQL_CONNECTION_IS_CLOSED.getContent();
+            var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_CONNECTION_IS_CLOSED.getContent();
             throw NoseException.create(exception, userMessage, technicalMessage);
         } catch (final Exception exception){
-            var userMessage = "a";
-            var technicalMessage = "b";
+            var userMessage = MessagesEnum.USER_ERROR_SQL_CONNECTION_UNEXPECTED_ERROR_VALIDATING_CONNECTION_STATUS.getContent();
+            var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_CONNECTION_SQL_EXCEPTION_VALIDATING_CONNECTION_STATUS.getContent();
             throw NoseException.create(exception,userMessage, technicalMessage);
         }
 

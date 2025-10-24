@@ -24,14 +24,9 @@ public class StateDomain extends Domain {
         setCountry(CountryDomain.getDefaultValue());
     }
 
-    public StateDomain(final UUID id, final CountryDomain country , String name) {
+    public StateDomain(final UUID id, String name,  final CountryDomain country ) {
         super(id);
-        setName(ObjectHelper.getDefault());
-        setName(name);
-    }
-
-    public StateDomain(UUID id, String name) {
-        super(id);
+        setCountry(country);
         setName(name);
     }
 

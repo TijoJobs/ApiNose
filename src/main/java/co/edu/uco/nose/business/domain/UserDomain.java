@@ -2,7 +2,6 @@ package co.edu.uco.nose.business.domain;
 
 import java.util.UUID;
 
-import co.edu.uco.nose.crosscuting.helper.BooleanHelper;
 import co.edu.uco.nose.crosscuting.helper.ObjectHelper;
 import co.edu.uco.nose.crosscuting.helper.TextHelper;
 import co.edu.uco.nose.crosscuting.helper.UUIDHelper;
@@ -36,8 +35,8 @@ public class UserDomain extends Domain {
         setMobileNumber(TextHelper.getDefault());
         setMobileNumberConfirmed(false);
         setEmailConfirmed(false);
-        setEmailConfirmedDefaultValue();
-        setMobileNumberConfirmedIsDefaultValue();
+        setEmailConfirmedDefaultValue(true);
+        setMobileNumberConfirmedIsDefaultValue(true);
     }
 
     public UserDomain(final UUID id) {
@@ -51,12 +50,10 @@ public class UserDomain extends Domain {
         setHomeCity(CityDomain.getDefaultValue());
         setEmail(TextHelper.getDefault());
         setMobileNumber(TextHelper.getDefault());
-        setMobileNumberConfirmed(BooleanHelper.getDefault());
-        setEmailConfirmed(BooleanHelper.getDefault());
         setMobileNumberConfirmed(false);
         setEmailConfirmed(false);
-        setEmailConfirmedDefaultValue();
-        setMobileNumberConfirmedIsDefaultValue();
+        setEmailConfirmedDefaultValue(true);
+        setMobileNumberConfirmedIsDefaultValue(true);
     }
 
 
@@ -162,7 +159,8 @@ public class UserDomain extends Domain {
     }
 
     public void setEmailConfirmed(final boolean emailConfirmed) {
-        this.emailConfirmed = BooleanHelper.getDefault(emailConfirmed);
+        this.emailConfirmed = emailConfirmed;
+        setEmailConfirmedDefaultValue(false);
     }
 
     public boolean isMobileNumberConfirmed() {
@@ -170,25 +168,24 @@ public class UserDomain extends Domain {
     }
 
     public void setMobileNumberConfirmed(final boolean mobileNumberConfirmed) {
-        this.mobileNumberConfirmed = BooleanHelper.getDefault(mobileNumberConfirmed);
-        setMobileNumberConfirmed(false);
+        this.mobileNumberConfirmed = mobileNumberConfirmed;
+        setMobileNumberConfirmedIsDefaultValue(false);
     }
 
     public boolean isEmailConfirmedDefaultValue() {
         return emailConfirmedIsDefaultValue;
     }
 
-    private void setEmailConfirmedDefaultValue() {
-        this.emailConfirmedIsDefaultValue = true;
-        setEmailConfirmed(false);
+    private void setEmailConfirmedDefaultValue(final boolean emailConfirmedDefaultValue) {
+        this.emailConfirmedIsDefaultValue = emailConfirmedDefaultValue;
     }
 
     public boolean isMobileNumberConfirmedDefaultValue() {
         return mobileNumberConfirmedIsDefaultValue;
     }
 
-    private void setMobileNumberConfirmedIsDefaultValue() {
-        this.mobileNumberConfirmedIsDefaultValue = true;
+    private void setMobileNumberConfirmedIsDefaultValue(final boolean mobileNumberConfirmedIsDefaultValue) {
+        this.mobileNumberConfirmedIsDefaultValue = mobileNumberConfirmedIsDefaultValue;
     }
 
 
